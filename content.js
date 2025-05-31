@@ -29,8 +29,20 @@ function getDurations() {
 }
 
 function injectTotalDurationDisplay(totalSeconds) {
-    const titleElement = document.querySelector('.metadata-wrapper.style-scope.ytd-playlist-header-renderer #container');
-    if (!titleElement) {
+  let titleElement = document.querySelector('yt-dynamic-text-view-model.page-header-view-model-wiz__page-header-title:nth-child(2) > h1:nth-child(1) > span:nth-child(1)');
+  
+  if (!!titleElement) {
+    let titleHeader = document.querySelector('yt-dynamic-text-view-model.page-header-view-model-wiz__page-header-title:nth-child(2)');
+    titleHeader.style.overflow = 'auto'
+    titleHeader.style.display = 'block'
+    titleHeader.style.maxHeight  = 'initial'
+  } else {
+    titleElement = document.querySelector('.metadata-wrapper.style-scope.ytd-playlist-header-renderer #container');
+  }
+
+  
+
+  if (!titleElement) {
       console.warn('[YT Playlist Extension] Playlist title not found.');
       return;
     }
